@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/mamboleoImages/greencart_assets/assets'
 import { useAppContext } from '../context/useAppContext'
 
 const Navbar = () => {
     const [open, setOpen] = React.useState(false)
-    const { user, setUser, setShowUserLogin, navigate } = useAppContext()
+    const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery } = useAppContext()
 
     const logout = async () => {
         setUser(null);
         navigate('/')
 
     }
+
+    useEffect(() => {
+        if (searchQuery.length > 0) {
+            navigate('/products')
+        }
+    }, [searchQuery, navigate])
 
     return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
@@ -28,7 +34,7 @@ const Navbar = () => {
 
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-                    <input className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
+                    <input onChange={(e) => setSearchQuery(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
                     <img src={assets.search_icon} alt='search icon' className='h-4 w-4' />
                 </div>
 
@@ -49,7 +55,7 @@ const Navbar = () => {
                                 <li onClick={() => navigate('my-orders')} className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>
                                     My Orders
                                 </li>
-                                <li onClick={() => navigate('/')} className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>
+                                <li onClick={logout} className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>
                                     Logout
                                 </li>
                             </ul>
