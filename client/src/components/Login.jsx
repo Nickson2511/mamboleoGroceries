@@ -2,7 +2,7 @@ import React from 'react'
 import { useAppContext } from '../context/useAppContext';
 
 const Login = () => {
-    const { setShowUserLogin , setUser} = useAppContext()
+    const { setShowUserLogin, setUser } = useAppContext()
 
     const [state, setState] = React.useState("login");
 
@@ -19,7 +19,7 @@ const Login = () => {
             name: "Nickson"
         })
         setShowUserLogin(false)
-        
+
     }
 
 
