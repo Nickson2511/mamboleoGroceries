@@ -11,68 +11,78 @@ const ProductCard = ({ product }) => {
                 navigate(`/products/${product.category.toLowerCase()}/${product._id}`);
                 window.scrollTo(0, 0);
             }}
-            className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full"
+            className="border border-gray-500/20 rounded-md p-3 bg-white w-full flex flex-col justify-between"
         >
-            <div className="group cursor-pointer flex items-center justify-center px-2">
+            {/* IMAGE */}
+            <div className="group cursor-pointer flex items-center justify-center h-[120px] sm:h-[140px] md:h-[160px]">
                 <img
-                    className="group-hover:scale-105 transition max-w-26 md:max-w-36"
+                    className="group-hover:scale-105 transition object-contain h-full"
                     src={product.image[0]}
                     alt={product.name}
                 />
             </div>
 
-            <div className="text-gray-500/60 text-sm">
-                <p>{product.category}</p>
+            {/* CONTENT */}
+            <div className="text-gray-500/60 text-sm mt-2 flex flex-col flex-1">
+                <p className="text-xs sm:text-sm">{product.category}</p>
 
-                <p className="text-gray-700 font-medium text-lg truncate w-full">
+                <p className="text-gray-700 font-medium text-sm sm:text-base md:text-lg line-clamp-2">
                     {product.name}
                 </p>
 
-                <div className="flex items-center gap-0.5">
+                {/* RATING */}
+                <div className="flex items-center gap-0.5 mt-1">
                     {Array(5).fill("").map((_, i) => (
                         <img
                             key={i}
                             src={i < 4 ? assets.star_icon : assets.star_dull_icon}
                             alt="star"
-                            className="md:w-3.5 w-3"
+                            className="w-3 sm:w-3.5"
                         />
                     ))}
-                    <p>(4)</p>
+                    <p className="text-xs">(4)</p>
                 </div>
 
-                <div className="flex items-end justify-between mt-3">
-                    <p className="md:text-xl text-base font-medium text-indigo-500">
+                {/* PRICE + BUTTON */}
+                <div className="flex items-end justify-between mt-3 gap-2">
+                    <p className="text-sm sm:text-base md:text-lg font-medium text-indigo-500">
                         {currency}${product.offerPrice}
-                        <span className="text-gray-500/60 md:text-sm text-xs line-through">
+                        <span className="block text-gray-500/60 text-xs line-through">
                             ${product.price}
                         </span>
                     </p>
 
-                    <div className="text-indigo-500">
+                    <div className="text-indigo-500 shrink-0">
                         {!cartItems[product._id] ? (
                             <button
                                 onClick={(e) => {
-                                    e.stopPropagation(); // prevents triggering parent click
+                                    e.stopPropagation();
                                     addToCart(product._id);
                                 }}
-                                className="flex items-center justify-center gap-1 bg-indigo-100 border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-indigo-600 font-medium"
+                                className="flex items-center justify-center gap-1 
+                                bg-indigo-100 border border-indigo-300 
+                                px-2 sm:px-3 h-[32px] sm:h-[34px] 
+                                rounded text-indigo-600 text-xs sm:text-sm font-medium"
                             >
-                                <img src={assets.cart_icon} alt="cart_icon" />
+                                <img src={assets.cart_icon} alt="cart_icon" className="w-3 sm:w-4" />
                                 Add
                             </button>
                         ) : (
-                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-indigo-500/25 rounded select-none">
+                            <div className="flex items-center justify-center gap-2 
+                                px-2 h-[32px] sm:h-[34px] 
+                                bg-indigo-500/25 rounded select-none text-xs sm:text-sm"
+                            >
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         removeFromCart(product._id);
                                     }}
-                                    className="cursor-pointer text-md px-2 h-full"
+                                    className="px-1"
                                 >
                                     -
                                 </button>
 
-                                <span className="w-5 text-center">
+                                <span className="w-4 text-center">
                                     {cartItems[product._id]}
                                 </span>
 
@@ -81,7 +91,7 @@ const ProductCard = ({ product }) => {
                                         e.stopPropagation();
                                         addToCart(product._id);
                                     }}
-                                    className="cursor-pointer text-md px-2 h-full"
+                                    className="px-1"
                                 >
                                     +
                                 </button>
@@ -95,9 +105,6 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-
-
 
 
 

@@ -4,7 +4,7 @@ import { assets } from '../assets/mamboleoImages/greencart_assets/assets'
 // Reusable Input Field Component
 const InputField = ({ type, placeholder, name, handleChange, address }) => (
     <input
-        className='w-full px-3 py-3 border border-gray-300 rounded-lg outline-none text-gray-600 focus:border-primary focus:ring-1 focus:ring-primary transition'
+        className='w-full px-3 py-2 sm:py-3 border border-gray-300 rounded-lg outline-none text-gray-600 focus:border-primary focus:ring-1 focus:ring-primary transition'
         type={type}
         placeholder={placeholder}
         onChange={handleChange}
@@ -41,22 +41,22 @@ const AddAddress = () => {
     }
 
     return (
-        <div className='mt-10 md:mt-16 pb-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto'>
+        <div className='mt-6 sm:mt-10 md:mt-16 pb-10 md:pb-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto'>
             
             {/* Title */}
-            <p className='text-2xl sm:text-3xl font-medium text-gray-700'>
+            <p className='text-xl sm:text-2xl md:text-3xl font-medium text-gray-700'>
                 Add Shipping <span className='text-primary font-semibold'>Address</span>
             </p>
 
             {/* Layout */}
-            <div className='flex flex-col lg:flex-row items-center gap-10 mt-8 lg:mt-10'>
+            <div className='flex flex-col-reverse lg:flex-row items-center gap-6 sm:gap-8 lg:gap-10 mt-4 sm:mt-6 lg:mt-10'>
                 
                 {/* LEFT: FORM */}
                 <div className='w-full lg:w-1/2'>
-                    <form onSubmit={onSubmitHandler} className='space-y-4 text-sm'>
+                    <form onSubmit={onSubmitHandler} className='space-y-3 sm:space-y-4 text-sm'>
 
                         {/* Name */}
-                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                             <InputField {...{ handleChange, address }} name='firstName' type='text' placeholder='First Name' />
                             <InputField {...{ handleChange, address }} name='lastName' type='text' placeholder='Last Name' />
                         </div>
@@ -68,13 +68,13 @@ const AddAddress = () => {
                         <InputField {...{ handleChange, address }} name='street' type='text' placeholder='Street Address' />
 
                         {/* City + State */}
-                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                             <InputField {...{ handleChange, address }} name='city' type='text' placeholder='City' />
                             <InputField {...{ handleChange, address }} name='state' type='text' placeholder='State' />
                         </div>
 
                         {/* Zip + Country */}
-                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                             <InputField {...{ handleChange, address }} name='zipcode' type='number' placeholder='Zip Code' />
                             <InputField {...{ handleChange, address }} name='country' type='text' placeholder='Country' />
                         </div>
@@ -83,7 +83,7 @@ const AddAddress = () => {
                         <InputField {...{ handleChange, address }} name='phone' type='text' placeholder='Phone Number' />
 
                         {/* Button */}
-                        <button className='w-full mt-4 bg-primary text-white py-3 rounded-lg hover:bg-primary-dull transition cursor-pointer uppercase tracking-wide'>
+                        <button className='w-full mt-3 sm:mt-4 bg-primary text-white py-2 sm:py-3 rounded-lg hover:bg-primary-dull transition cursor-pointer uppercase tracking-wide text-sm sm:text-base'>
                             Save Address
                         </button>
                     </form>
@@ -94,7 +94,7 @@ const AddAddress = () => {
                     <img
                         src={assets.add_address_iamge}
                         alt='Add Address'
-                        className='w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-contain'
+                        className='w-full max-w-[180px] sm:max-w-xs md:max-w-md lg:max-w-lg object-contain'
                     />
                 </div>
 
@@ -104,3 +104,7 @@ const AddAddress = () => {
 }
 
 export default AddAddress
+
+
+
+
